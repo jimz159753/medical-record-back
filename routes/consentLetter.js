@@ -21,4 +21,14 @@ router.post('/add', async (req, res) => {
     }
 });
 
+router.get('/:phone', async (req, res) => {
+    const phone = req.params.phone
+    try {
+        const consentLetter = await ConsentLetter.findOne({phone});
+        res.json(consentLetter)
+    } catch (err) {
+        res.json({ message: err })
+    }
+});
+
 module.exports = router;
